@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="projectStyle.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">Tyler Sears</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>  
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+<h1 class="title">Projects</h1>
+<div class="more-can-be">
+    <p>More projects can be found on my</p><p><a href="https://github.com/Arcannn">GitHub</a></p>
+  <div class="about-containers">
+
+    <!-- Project 1 -->
+    <div class="details-container color-container">
+      <div class="article-container">
+        <img
+          src="photos/a1cb5f478c49d9c7f96c492410b7f55d.gif"
+          alt="Project 1"
+          class="project-img"
+        />
+      </div>
+      <h2 class="experience-sub-title project-title">Java GUI</h2>
+      <div class="btn-container">
+        <button
+          class="btn btn-color-2 project-btn"
+          onclick="location.href='https://github.com/Arcannn/Gem-Converter'"
+        >
+          Github
+        </button>
+        
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="details-container color-container">
+      <div class="article-container">
+        <img
+          src="photos/5c42ed0ce04f9e304c18d319d6c8ad85.gif"
+          alt="Project 2"
+          class="project-img"
+        />
+      </div>
+      <h2 class="experience-sub-title project-title">2D Game</h2>
+      <div class="btn-container">
+        <button
+          class="btn btn-color-2 project-btn"
+          onclick="location.href='https://github.com/Arcannn/Flow-Through-Game'"
+        >
+          Github
+        </button>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="details-container color-container">
+      <div class="article-container">
+        <img
+          src="photos/7b3eff967747f08833d819806db69060.gif"
+          alt="Project 3"
+          class="project-img"
+        />
+      </div>
+      <h2 class="experience-sub-title project-title">VR Game</h2>
+      <div class="btn-container">
+        <button
+          class="btn btn-color-2 project-btn"
+          onclick="location.href='https://github.com/Arcannn/VR-Escaperoom-Game'"
+        >
+          Github
+        </button>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="experience-details-container">
+  <div class="about-containers">
+    <!-- Project 4 -->
+    <div class="details-container color-container">
+      <div class="article-container">
+        <img
+          src="photos/364870767-8a0f3656-969e-4d6a-a2e1-7b9eba43e5d8.png"
+          alt="Project 4"
+          class="project-img"
+        />
+      </div>
+      <h2 class="experience-sub-title project-title">Infinity 3D Game</h2>
+      <div class="btn-container">
+        <button
+          class="btn btn-color-2 project-btn"
+          onclick="location.href='https://github.com/Arcannn/Infinity'"
+        >
+          Github
+        </button>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="details-container color-container">
+      <div class="article-container">
+        <img
+          src="photos/mediaqueries.png"
+          alt="Project 5"
+          class="project-img"
+        />
+      </div>
+      <h2 class="experience-sub-title project-title">Currrency Converter</h2>
+      <div class="btn-container">
+        <button
+          class="btn btn-color-2 project-btn"
+          onclick="location.href='https://github.com/Arcannn/Currency-Converter1'"
+        >
+          Github
+        </button>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="details-container color-container">
+      <div class="article-container">
+    
+      </div>
+      <h2 class="experience-sub-title project-title">To-do-list Java </h2>
+      <div class="btn-container">
+        <button
+          class="btn btn-color-2 project-btn"
+          onclick="location.href='https://github.com/Arcannn/To-do-List'"
+        >
+          Github
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </body>
+  <footer>
+    <nav>
+      <div class="nav-links-container">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p>Copyright &#169; 2023 Tyler Sears. All Rights Reserved.</p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+  
+  
+  // CONSTANTS
+  const CELL_SIZE = 40; // size of each cell in the grid
+  const COLOR_R = 144;
+  const COLOR_G = 160;
+  const COLOR_B = 176;
+  const STARTING_ALPHA = 200;
+  const BACKGROUND_COLOR = 250;
+  const PROB_OF_NEIGHBOR = 0.5;
+  const AMT_FADE_PER_FRAME = 5;
+  
+  // VARIABLES
+  let colorWithAlpha;
+  let numRows;
+  let numCols;
+  let currentRow = -2;
+  let currentCol = -2;
+  let allNeighbors = []; // Array to store all neighbors
+  let isBackgroundEnabled = true; // Toggle background effect
+  let toggleButton; // Button element
+  
+  function setup() {
+  let cnv = createCanvas(windowWidth, windowHeight);
+  cnv.style("position", "fixed");
+  cnv.style("inset", 0);
+  cnv.style("z-index", -1);
+  
+  colorWithAlpha = color(COLOR_R, COLOR_G, COLOR_B, STARTING_ALPHA);
+  noFill();
+  stroke(colorWithAlpha);
+  strokeWeight(1);
+  numRows = Math.ceil(windowHeight / CELL_SIZE); // number of rows in the grid
+  numCols = Math.ceil(windowWidth / CELL_SIZE); // number of columns in the grid
+  
+  // Create and style the button
+  toggleButton = createButton('Toggle Effect');
+  toggleButton.position(10, 20); // Position the button on the screen
+  toggleButton.style('background-color', '#ffffff'); // White background
+  toggleButton.style('color', '#333333'); // Dark text color
+  toggleButton.style('border', '1px solid #333333'); // Dark border
+  toggleButton.style('border-radius', '15px'); // Curved edges
+  toggleButton.style('padding', '2.5px 5px'); // Padding
+  toggleButton.style('font-size', '14px'); // Font size
+  toggleButton.style('font-family', '"Poppins", sans-serif'); // Font family
+  toggleButton.style('cursor', 'pointer'); // Pointer cursor on hover
+  toggleButton.mousePressed(toggleBackgroundEffect); // Attach function to button
+  
+  // Add hover effect using mouse events
+  toggleButton.mouseOver(() => {
+  toggleButton.style('background-color', '#e0e0e0'); // Light gray background on hover
+  });
+  toggleButton.mouseOut(() => {
+  toggleButton.style('background-color', '#ffffff'); // Revert to white background
+  });
+  }
+  
+  function draw() {
+  background(BACKGROUND_COLOR);
+  
+  if (isBackgroundEnabled) {
+  // Calculate the row and column of the cell that the mouse is currently over
+  let row = floor(mouseY / CELL_SIZE);
+  let col = floor(mouseX / CELL_SIZE);
+  
+  // Check if the mouse has moved to a different cell
+  if (row !== currentRow || col !== currentCol) {
+    currentRow = row;
+    currentCol = col;
+    // Add new neighbors to the allNeighbors array
+    allNeighbors.push(...getRandomNeighbors(row, col));
+  }
+  
+  // Use the calculated row and column to determine the position of the cell
+  let x = col * CELL_SIZE;
+  let y = row * CELL_SIZE;
+  
+  // Draw a highlighted rectangle over the cell under the mouse cursor
+  stroke(colorWithAlpha);
+  rect(x, y, CELL_SIZE, CELL_SIZE);
+  
+  // Draw and update all neighbors
+  for (let neighbor of allNeighbors) {
+    let neighborX = neighbor.col * CELL_SIZE;
+    let neighborY = neighbor.row * CELL_SIZE;
+    // Update the opacity of the neighbor
+    neighbor.opacity = max(0, neighbor.opacity - AMT_FADE_PER_FRAME); // Decrease opacity by 5 each frame
+    stroke(COLOR_R, COLOR_G, COLOR_B, neighbor.opacity);
+    rect(neighborX, neighborY, CELL_SIZE, CELL_SIZE);
+  }
+  // Remove neighbors with zero opacity
+  allNeighbors = allNeighbors.filter((neighbor) => neighbor.opacity > 0);
+  }
+  }
+  
+  function getRandomNeighbors(row, col) {
+  let neighbors = []; // Initialize an empty array to store neighbor cells
+  
+  // Loop through the cells surrounding the given cell (row, col)
+  for (let dRow = -1; dRow <= 1; dRow++) {
+  for (let dCol = -1; dCol <= 1; dCol++) {
+    // Calculate the neighboring cell's row and column indices
+    let neighborRow = row + dRow;
+    let neighborCol = col + dCol;
+  
+    // Check if the current cell in the loop is the given cell (row, col)
+    let isCurrentCell = dRow === 0 && dCol === 0;
+  
+    // Check if the neighboring cell is within the grid boundaries
+    let isInBounds =
+      neighborRow >= 0 &&
+      neighborRow < numRows &&
+      neighborCol >= 0 &&
+      neighborCol < numCols;
+  
+    // If the cell is not the given cell, is within bounds, and has a 50% chance,
+    // add the neighboring cell to the neighbors array
+    if (!isCurrentCell && isInBounds && Math.random() < PROB_OF_NEIGHBOR) {
+      neighbors.push({
+        row: neighborRow,
+        col: neighborCol,
+        opacity: 255, // Initial opacity of the neighbor
+      });
+    }
+  }
+  }
+  
+  // Return the array of randomly-selected neighboring cells
+  return neighbors;
+  }
+  
+  function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  numRows = Math.ceil(windowHeight / CELL_SIZE); // number of rows in the grid
+  numCols = Math.ceil(windowWidth / CELL_SIZE); // number of columns in the grid
+  }
+  
+  // Function to toggle the background effect
+  function toggleBackgroundEffect() {
+  isBackgroundEnabled = !isBackgroundEnabled;
+  }
+  
+  
+  </script>
+  </html>

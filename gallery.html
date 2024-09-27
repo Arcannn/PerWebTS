@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio-Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+    <link rel="stylesheet" href="galleryStyle.css">
+</head>
+<body>
+    <nav id="desktop-nav">
+        <div class="logo">Tyler Sears</div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="about">
+        <h1 class="title">Gallery</h1>
+      
+    </section>
+
+    <section class="photo-gallery">
+        <div class="masonry-grid">
+            <div class="masonry-item"><img src="photos-cars/DSC_0276.JPG" alt="nature Image 1"></div>
+            <div class="masonry-item"><img src="subfiles/photos/1e998721-01c2-42af-8550-411a6342567e_rw_1200.jpg" alt="Image 2"></div>
+            <div class="masonry-item"><img src="subfiles/photos/5a304ee5-d1ad-4b38-bd78-ed8db3da46eb_rw_600.jpg" alt="Image 3"></div>
+            <div class="masonry-item"><img src="subfiles/photos/6e4c218f-04e8-4ba1-a3c0-3d2faf30e6f8_rw_600.jpg" alt="Image 4"></div>
+            <div class="masonry-item"><img src="subfiles/photos/144b86ee-8beb-47af-ae84-a159770dca3a_rw_600.jpg" alt="Image 5"></div>
+            <div class="masonry-item"><img src="subfiles/photos/a3285b44-1dd7-4a6e-8add-cec5bbf6e4a6_rw_1920.jpg" alt="Image 6"></div>
+            <div class="masonry-item"><img src="subfiles/photos/cc743d01-f54f-4058-b461-18d2d0ece91f_rw_1920.jpg" alt="Image 7"></div>
+            <div class="masonry-item"><img src="subfiles/photos/e3ebaf18-30fb-408d-bfb3-b8bcfe2876c0_rw_1920.jpg" alt="Image 8"></div>
+            <div class="masonry-item"><img src="subfiles/photos/e39d1e0b-6513-487e-a718-5af3857547f3_rw_600.jpg" alt="Image 9"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0186.jpg" alt="Car Image 1"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0197.jpg" alt="Car Image 2"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0200.jpg" alt="Car Image 3"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0201.jpg" alt="Car Image 4"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0207.jpg" alt="Car Image 5"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0230.jpg" alt="Car Image 6"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0233.jpg" alt="Car Image 7"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0070.jpg" alt="Car Image 8"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0071.jpg" alt="Car Image 9"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0073.jpg" alt="Car Image 10"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0074.jpg" alt="Car Image 11"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0090.jpg" alt="Car Image 12"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0095.jpg" alt="Car Image 13"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0120.jpg" alt="Car Image 14"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0141.jpg" alt="Car Image 15"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0142.jpg" alt="Car Image 16"></div>
+            <div class="masonry-item"><img src="photos-cars/DSC_0185.jpg" alt="Car Image 17"></div>
+        </div>
+    </section>
+
+    <div id="image-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image" alt="Enlarged Image">
+    </div>
+
+    <script src="galleryScript.js"></script>
+</body>
+
+
+<footer>
+  <nav>
+    <div class="nav-links-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+  <p>Copyright &#169; 2023 Tyler Sears. All Rights Reserved.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+
+
+// CONSTANTS
+const CELL_SIZE = 40; // size of each cell in the grid
+const COLOR_R = 144;
+const COLOR_G = 160;
+const COLOR_B = 176;
+const STARTING_ALPHA = 200;
+const BACKGROUND_COLOR = 250;
+const PROB_OF_NEIGHBOR = 0.5;
+const AMT_FADE_PER_FRAME = 5;
+
+// VARIABLES
+let colorWithAlpha;
+let numRows;
+let numCols;
+let currentRow = -2;
+let currentCol = -2;
+let allNeighbors = []; // Array to store all neighbors
+let isBackgroundEnabled = true; // Toggle background effect
+let toggleButton; // Button element
+
+function setup() {
+let cnv = createCanvas(windowWidth, windowHeight);
+cnv.style("position", "fixed");
+cnv.style("inset", 0);
+cnv.style("z-index", -1);
+
+colorWithAlpha = color(COLOR_R, COLOR_G, COLOR_B, STARTING_ALPHA);
+noFill();
+stroke(colorWithAlpha);
+strokeWeight(1);
+numRows = Math.ceil(windowHeight / CELL_SIZE); // number of rows in the grid
+numCols = Math.ceil(windowWidth / CELL_SIZE); // number of columns in the grid
+
+// Create and style the button
+toggleButton = createButton('Toggle Effect');
+toggleButton.position(10, 20); // Position the button on the screen
+toggleButton.style('background-color', '#ffffff'); // White background
+toggleButton.style('color', '#333333'); // Dark text color
+toggleButton.style('border', '1px solid #333333'); // Dark border
+toggleButton.style('border-radius', '15px'); // Curved edges
+toggleButton.style('padding', '2.5px 5px'); // Padding
+toggleButton.style('font-size', '14px'); // Font size
+toggleButton.style('font-family', '"Poppins", sans-serif'); // Font family
+toggleButton.style('cursor', 'pointer'); // Pointer cursor on hover
+toggleButton.mousePressed(toggleBackgroundEffect); // Attach function to button
+
+// Add hover effect using mouse events
+toggleButton.mouseOver(() => {
+toggleButton.style('background-color', '#e0e0e0'); // Light gray background on hover
+});
+toggleButton.mouseOut(() => {
+toggleButton.style('background-color', '#ffffff'); // Revert to white background
+});
+}
+
+function draw() {
+background(BACKGROUND_COLOR);
+
+if (isBackgroundEnabled) {
+// Calculate the row and column of the cell that the mouse is currently over
+let row = floor(mouseY / CELL_SIZE);
+let col = floor(mouseX / CELL_SIZE);
+
+// Check if the mouse has moved to a different cell
+if (row !== currentRow || col !== currentCol) {
+  currentRow = row;
+  currentCol = col;
+  // Add new neighbors to the allNeighbors array
+  allNeighbors.push(...getRandomNeighbors(row, col));
+}
+
+// Use the calculated row and column to determine the position of the cell
+let x = col * CELL_SIZE;
+let y = row * CELL_SIZE;
+
+// Draw a highlighted rectangle over the cell under the mouse cursor
+stroke(colorWithAlpha);
+rect(x, y, CELL_SIZE, CELL_SIZE);
+
+// Draw and update all neighbors
+for (let neighbor of allNeighbors) {
+  let neighborX = neighbor.col * CELL_SIZE;
+  let neighborY = neighbor.row * CELL_SIZE;
+  // Update the opacity of the neighbor
+  neighbor.opacity = max(0, neighbor.opacity - AMT_FADE_PER_FRAME); // Decrease opacity by 5 each frame
+  stroke(COLOR_R, COLOR_G, COLOR_B, neighbor.opacity);
+  rect(neighborX, neighborY, CELL_SIZE, CELL_SIZE);
+}
+// Remove neighbors with zero opacity
+allNeighbors = allNeighbors.filter((neighbor) => neighbor.opacity > 0);
+}
+}
+
+function getRandomNeighbors(row, col) {
+let neighbors = []; // Initialize an empty array to store neighbor cells
+
+// Loop through the cells surrounding the given cell (row, col)
+for (let dRow = -1; dRow <= 1; dRow++) {
+for (let dCol = -1; dCol <= 1; dCol++) {
+  // Calculate the neighboring cell's row and column indices
+  let neighborRow = row + dRow;
+  let neighborCol = col + dCol;
+
+  // Check if the current cell in the loop is the given cell (row, col)
+  let isCurrentCell = dRow === 0 && dCol === 0;
+
+  // Check if the neighboring cell is within the grid boundaries
+  let isInBounds =
+    neighborRow >= 0 &&
+    neighborRow < numRows &&
+    neighborCol >= 0 &&
+    neighborCol < numCols;
+
+  // If the cell is not the given cell, is within bounds, and has a 50% chance,
+  // add the neighboring cell to the neighbors array
+  if (!isCurrentCell && isInBounds && Math.random() < PROB_OF_NEIGHBOR) {
+    neighbors.push({
+      row: neighborRow,
+      col: neighborCol,
+      opacity: 255, // Initial opacity of the neighbor
+    });
+  }
+}
+}
+
+// Return the array of randomly-selected neighboring cells
+return neighbors;
+}
+
+function windowResized() {
+resizeCanvas(windowWidth, windowHeight);
+numRows = Math.ceil(windowHeight / CELL_SIZE); // number of rows in the grid
+numCols = Math.ceil(windowWidth / CELL_SIZE); // number of columns in the grid
+}
+
+// Function to toggle the background effect
+function toggleBackgroundEffect() {
+isBackgroundEnabled = !isBackgroundEnabled;
+}
+
+
+</script>
+</html>
